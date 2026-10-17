@@ -29,6 +29,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  * @date 2019/01/01
  */
 @Configuration
+@org.springframework.context.annotation.PropertySource("classpath:support.properties")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final String adminContextPath;
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(adminContextPath + "/instances").permitAll()
-                .antMatchers(adminContextPath + "/actuator/**").permitAll()
+                .requestMatchers(org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.toAnyEndpoint().excluding("metrics")).permitAll()
                 .antMatchers(adminContextPath + "/assets/**").permitAll()
                 .antMatchers(adminContextPath + "/login").permitAll()
                 .anyRequest().authenticated()

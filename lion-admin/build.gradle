@@ -23,6 +23,7 @@ apply plugin: 'com.bmuschko.docker-spring-boot-application'
 mainClassName = 'com.lion.admin.AdminApplication'
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
