@@ -37,6 +37,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @date 2019/04/08
  */
 @EnableWebSecurity
+@org.springframework.context.annotation.PropertySource("classpath:platform.properties")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -78,6 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(excludeUrls).permitAll()
+                .requestMatchers(org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.toAnyEndpoint().excluding("caches")).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();
