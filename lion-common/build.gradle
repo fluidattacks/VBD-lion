@@ -24,6 +24,7 @@ configurations {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.apache.commons:commons-lang3'
     implementation "org.apache.commons:commons-collections4"
 
